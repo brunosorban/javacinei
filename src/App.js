@@ -1,7 +1,7 @@
 import React from 'react';
-import Head from './template/Head'
-import Footer from './template/Footer'
-import Home from './pages/home/Home';
+import Head from './template/Head';
+import Footer from './template/Footer';
+import Home from './pages/home/Home';  
 
 class App extends React.Component {
   constructor(props) {
@@ -44,6 +44,108 @@ class App extends React.Component {
     return (novo_estoque)
   }
 
+  prepare_estoque(estoque, vacinas) {
+    let estoque_unificado = [];
+
+    for (const v_id in vacinas) {
+      let nome_temp = vacinas[v_id]['nome']
+        estoque_unificado[v_id] = {'nome': nome_temp, 'quantidade': 0};
+        for (const e_id in estoque) {
+          if (estoque[e_id]['nome'] === nome_temp){
+            estoque_unificado[v_id]['quantidade'] = estoque_unificado[v_id]['quantidade'] + estoque[e_id]['quantidade'];
+          }
+        }
+    }
+
+    return (estoque_unificado)
+  }
+
+  contas(vacineis, agendamentos) {
+    var today = new Date();
+    var month = today.getMonth()+1;
+    var year = today.getFullYear();
+    var mon_year = String(year) + '-' + String(month);
+    var agendamentos_mes = 0;
+    
+    for (const v_id in vacineis) {
+      var temp_date = agendamentos[vacineis[v_id]['agendamento_id']-1]['dia'];
+      temp_date = temp_date.slice(0, 7);
+      if (String(temp_date) === String(mon_year)) {
+        agendamentos_mes++;
+      }
+    }
+
+    return agendamentos_mes
+  }
+
+  grafico(agendamentos) {
+    var today = new Date();
+    var year = today.getFullYear();
+    var grafico = [
+      {
+        name: 'Jan',
+        "Soma": 0,
+      },
+      {
+        name: 'Fev',
+        "Soma": 0,
+      },
+      {
+        name: 'Mar',
+        "Soma": 0,
+      },
+      {
+        name: 'Abr',
+        "Soma": 0,
+      },
+      {
+        name: 'Mai',
+        "Soma": 0,
+      },
+      {
+        name: 'Jun',
+        "Soma": 0,
+      },
+      {
+        name: 'Jul',
+        "Soma": 0,
+      },
+      {
+        name: 'Ago',
+        "Soma": 0,
+      },
+      {
+        name: 'Set',
+        "Soma": 0,
+      },
+      {
+        name: 'Out',
+        "Soma": 0,
+      },
+      {
+        name: 'Nov',
+        "Soma": 0,
+      },
+      {
+        name: 'Dez',
+        "Soma": 0,
+      },
+    ];
+    
+    for (const a_id in agendamentos) {
+      var temp_date = agendamentos[a_id]['dia'];
+      temp_date = temp_date.slice(0, 4);
+
+      if (String(temp_date) === String(year)) {
+        var temp_mes = agendamentos[a_id]['dia'];
+        temp_mes = temp_mes.slice(5, 7);
+        grafico[Number(temp_mes)-1]['Soma']++;
+      }
+    }
+
+    return grafico
+  }
+
   render() {
     let {estoque, vacinas, agendamentos, vacineis} = this.state; 
 
@@ -64,11 +166,17 @@ class App extends React.Component {
     }
 
     let novo_estoque = this.prepare(estoque, vacinas);
+    let estoque_unificado = this.prepare_estoque(novo_estoque, vacinas);
+    const total_vacinei = vacineis.length;
+    const total_agendamentos = agendamentos.length;
+    let agendamentos_mes = this.contas(vacineis, agendamentos);
+    let grafico = this.grafico(agendamentos);
     
     return (
       <div className='App'>
         <Head/>
-        <Home data={novo_estoque}/>
+        <Home data={estoque_unificado} total_vacinei={total_vacinei} 
+        total_agendamentos={total_agendamentos} agendamentos_mes={agendamentos_mes} grafico={grafico}/>
         <Footer/>
       </div>
       );
