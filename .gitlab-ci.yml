@@ -7,7 +7,7 @@ eslint:
   image: node:16.13.1
   stage: code_quality
   before_script:
-    - npm instaill -g eslint
+    - npm install -g eslint
   script:
     - eslint -- --ext .jsx,.js src/
 unit_tests:
