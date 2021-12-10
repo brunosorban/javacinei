@@ -3,15 +3,78 @@ import Head from './template/Head'
 import Footer from './template/Footer'
 import Home from './pages/home/Home';
 
-function App() {
-  return (
-  <div className='App'>
-    <Head/>
-    <Home/>
-    <Footer/>
-  </div>
-  );
-}
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { estoque:null, vacinas:null };
+  }
+
+  componentDidMount() {
+    fetch('http://127.0.0.1:8000/api/estoques/')
+      .then((response) => response.json())
+      .then((result) => this.setState({ estoque: result }))
+      .catch((error) => error);
+
+    fetch('http://127.0.0.1:8000/api/vacinas/')
+      .then((response) => response.json())
+      .then((result) => this.setState({ vacinas: result }))
+      .catch((error) => error);
+
+    fetch('http://127.0.0.1:8000/api/agendamentos/')
+      .then((response) => response.json())
+      .then((result) => this.setState({ agendamentos: result }))
+      .catch((error) => error);
+
+    fetch('http://127.0.0.1:8000/api/vacineis/')
+      .then((response) => response.json())
+      .then((result) => this.setState({ vacineis: result }))
+      .catch((error) => error);
+
+  }
+
+  prepare(estoque, vacinas) {
+    let novo_estoque = estoque;
+
+    for (const prop in estoque) {
+        const num = estoque[prop].vacinas_id;
+        const nome = vacinas[num-1]["nome"];
+        novo_estoque[prop].nome = nome;
+    }
+
+    return (novo_estoque)
+  }
+
+  render() {
+    let {estoque, vacinas, agendamentos, vacineis} = this.state; 
+
+    if (!estoque) {
+      return null;
+    }
+
+    if (!vacinas) {
+      return null;
+    }
+
+    if (!agendamentos) {
+      return null;
+    }
+
+    if (!vacineis) {
+      return null;
+    }
+
+    let novo_estoque = this.prepare(estoque, vacinas);
+    
+    return (
+      <div className='App'>
+        <Head/>
+        <Home data={novo_estoque}/>
+        <Footer/>
+      </div>
+      );
+    }
+  }
+
 
 export default App;
 

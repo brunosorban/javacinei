@@ -13,7 +13,7 @@ export default function FeaturedInfo() {
                 <span className="featuredSub">Em relação ao mês passado</span>
             </div>
             <div className='featuredItem'>
-                <span className='featuredTitle'>Vacinas agendadas</span>
+                <span className='featuredTitle'>Total de vacinas agendadas</span>
                 <div className='featuredMoneyContainer'>
                     <span className='featuredMoney'> 363</span>
                     <span className='featuredMoneyRate'>12 <ArrowDownward className='featuredIconNegative'/></span>
@@ -24,7 +24,7 @@ export default function FeaturedInfo() {
                 <span className='featuredTitle'>Total de Vacinas aplicadas</span>
                 <div className='featuredMoneyContainer'>
                     <span className='featuredMoney'> 3000</span>
-                    <span className='featuredMoneyRate'>11 <ArrowUpward/></span>
+                    <span className='featuredMoneyRate'>11 <ArrowUpward className='featuredIcon'/></span>
                 </div>
                 <span className="featuredSub">Desde o início da plataforma</span>
             </div>
