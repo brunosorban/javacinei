@@ -68,7 +68,8 @@ class App extends React.Component {
     var agendamentos_mes = 0;
     
     for (const v_id in vacineis) {
-      var temp_date = agendamentos[vacineis[v_id]['agendamento_id']-1]['dia'];
+      const temp = agendamentos.filter(agendamentos => agendamentos['id'] === vacineis[v_id]['agendamento_id']);
+      var temp_date = temp[0]['dia'];
       temp_date = temp_date.slice(0, 7);
       if (String(temp_date) === String(mon_year)) {
         agendamentos_mes++;
