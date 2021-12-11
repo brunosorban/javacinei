@@ -10,22 +10,22 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    fetch('http://127.0.0.1:8000/api/estoques/')
+    fetch('https://site-vacinei.herokuapp.com/api/estoques/')
       .then((response) => response.json())
       .then((result) => this.setState({ estoque: result }))
       .catch((error) => error);
 
-    fetch('http://127.0.0.1:8000/api/vacinas/')
+    fetch('https://site-vacinei.herokuapp.com/api/vacinas/')
       .then((response) => response.json())
       .then((result) => this.setState({ vacinas: result }))
       .catch((error) => error);
 
-    fetch('http://127.0.0.1:8000/api/agendamentos/')
+    fetch('https://site-vacinei.herokuapp.com/api/agendamentos/')
       .then((response) => response.json())
       .then((result) => this.setState({ agendamentos: result }))
       .catch((error) => error);
 
-    fetch('http://127.0.0.1:8000/api/vacineis/')
+    fetch('https://site-vacinei.herokuapp.com/api/vacineis/')
       .then((response) => response.json())
       .then((result) => this.setState({ vacineis: result }))
       .catch((error) => error);
