@@ -1,15 +1,11 @@
 import React from 'react';
 
-function Head() {
+function Header() {
     return (
         <header id='header'>
-        <div id='header-title'>
             <img src="https://i.imgur.com/6PHyWdC.png" alt="logo"/>
             <h1 id='title'>Vacinei Dashboard</h1>
-            <div>
-            <h3 id='link-volta'><a href='https://site-vacinei.herokuapp.com/'>De volta ao Vacinei</a></h3>
-            </div>
-        </div>
+            <a href='https://site-vacinei.herokuapp.com/'><button className="btn volta" type="submit">De volta ao Vacinei</button></a>
     </header>
     );
 

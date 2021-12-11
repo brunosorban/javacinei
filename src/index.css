@@ -54,13 +54,18 @@ body {
       align-items: center;
       background-color: var(--header-footer-color); /* cor de fundo do header */
     }
-  
+
   header img {
     display: flex;
     max-height:40mm;
     padding: 5mm;
     width: auto;
     height: auto;
+
+  }
+
+  .volta {
+    margin-right: 25px;
   }
   
   header h1 {
@@ -82,6 +87,16 @@ body {
   header nav li {
     display: inline-block;
     color: #182628;
+  }
+
+  #link-volta {
+    display: flex;
+    align-items: flex-end;
+  }
+
+  #link-volta h3 {
+    position: relative;
+    margin-top: 50%;
   }
   
   main {
@@ -106,9 +121,6 @@ body {
     color: inherit;
   }
   
-  #link-volta {
-    float: right;
-  }
   footer {
     display: flex;
     justify-content: center;

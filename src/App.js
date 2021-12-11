@@ -1,5 +1,5 @@
 import React from 'react';
-import Head from './template/Header';
+import Header from './template/Header';
 import Footer from './template/Footer';
 import Home from './pages/home/Home';  
 
