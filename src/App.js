@@ -1,5 +1,5 @@
 import React from 'react';
-import Head from './template/Head';
+import Head from './template/Header';
 import Footer from './template/Footer';
 import Home from './pages/home/Home';  
 
@@ -174,7 +174,7 @@ class App extends React.Component {
     
     return (
       <div className='App'>
-        <Head/>
+        <Header/>
         <Home data={estoque_unificado} total_vacinei={total_vacinei} 
         total_agendamentos={total_agendamentos} agendamentos_mes={agendamentos_mes} grafico={grafico}/>
         <Footer/>
