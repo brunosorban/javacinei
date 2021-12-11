@@ -107,7 +107,7 @@ body {
   }
   
   #link-volta {
-    float: left;
+    float: right;
   }
   footer {
     display: flex;
