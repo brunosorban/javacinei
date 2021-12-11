@@ -106,6 +106,9 @@ body {
     color: inherit;
   }
   
+  #link-volta {
+    float: left;
+  }
   footer {
     display: flex;
     justify-content: center;
