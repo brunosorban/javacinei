@@ -37,9 +37,10 @@ class App extends React.Component {
 
     for (const prop in estoque) {
         const num = estoque[prop].vacinas_id;
-        const nome = vacinas[num-1]["nome"];
+        const temp = vacinas.filter(vacinas => vacinas['id'] === num);
+        const nome = temp[0]["nome"];
         novo_estoque[prop].nome = nome;
-    }
+      }
 
     return (novo_estoque)
   }
